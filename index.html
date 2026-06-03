@@ -186,22 +186,22 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: rgba(227,161,30,0.1);
-  border: 1px solid rgba(227,161,30,0.35);
+  background: rgba(54,208,106,0.1);
+  border: 1px solid rgba(54,208,106,0.4);
   padding: 7px 16px;
   font-family: 'Cinzel', serif;
   font-size: 0.6rem;
   font-weight: 600;
   letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: var(--ouro);
+  color: #4fd98a;
   margin-bottom: 28px;
   width: fit-content;
 }
 .hero-badge::before {
   content: '';
   width: 6px; height: 6px;
-  background: var(--ouro);
+  background: #36d06a;
   border-radius: 50%;
   flex-shrink: 0;
   animation: pisca 2s infinite;
@@ -891,6 +891,48 @@ body {
 .bonus-txt h4 { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--ouro-claro); margin-bottom: 8px; }
 .bonus-txt p  { font-size: 0.95rem; color: rgba(255,255,255,0.72); line-height: 1.62; }
 
+/* ─── TURMA ATUAL — TIRA DE PROVAS (mensagens reais) ─────── */
+.turma-prova { margin: 40px 0 4px; }
+.turma-prova-head {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 14px;
+  margin-bottom: 18px;
+}
+.turma-prova-tag {
+  display: inline-flex; align-items: center; gap: 9px;
+  font-family: 'Cinzel', serif; font-size: 0.66rem; font-weight: 700;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--ouro-claro);
+}
+.turma-prova-sub { font-size: 0.86rem; color: rgba(255,255,255,0.5); }
+.turma-pulse {
+  width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0;
+  background: #36d06a; box-shadow: 0 0 0 0 rgba(54,208,106,0.6);
+  animation: turmaPulse 1.9s infinite;
+}
+@keyframes turmaPulse {
+  0%   { box-shadow: 0 0 0 0 rgba(54,208,106,0.5); }
+  70%  { box-shadow: 0 0 0 9px rgba(54,208,106,0); }
+  100% { box-shadow: 0 0 0 0 rgba(54,208,106,0); }
+}
+.tdep-wrap {
+  position: relative; overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+          mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+}
+.tdep-track { display: flex; gap: 16px; width: max-content; will-change: transform; }
+.tdep-slide {
+  flex: 0 0 auto; margin: 6px 0; border-radius: 12px; overflow: hidden;
+  border: 1px solid rgba(227,161,30,0.28); background: #ece5dd;
+  box-shadow: 0 14px 32px rgba(0,0,0,0.45), inset 0 0 0 1px rgba(255,255,255,0.03);
+}
+.tdep-slide img {
+  display: block; height: 300px; width: auto; object-fit: cover; object-position: top center;
+}
+@media (max-width: 760px) {
+  .turma-prova-tag { font-size: 0.58rem; }
+  .turma-prova-sub { font-size: 0.78rem; }
+  .tdep-slide img { height: 232px; }
+}
+
 /* ─── DEPOIMENTOS — CARROSSEL ──────────────────────────── */
 .dep-carousel-wrap {
   position: relative;
@@ -1469,8 +1511,8 @@ src="https://www.facebook.com/tr?id=1370963298384286&ev=PageView&noscript=1"
   <div class="container">
     <div class="problema-foco">
       <span class="problema-foco-eyebrow">O problema real</span>
-      <h2 class="problema-h2">O problema nunca foi a Matemática.<br>Foi estudar <em>sem acompanhamento.</em></h2>
-      <p class="problema-lead"><strong>Imagina ter 800 aulas e ninguém pra perguntar.</strong> Você trava numa questão e manda no fórum da plataforma que você assina. A resposta vem em três dias. Se vier.</p>
+      <h2 class="problema-h2">O problema nunca foi a Matemática.<br><br>Foi estudar <em>sem acompanhamento.</em></h2>
+      <p class="problema-lead"><strong>Imagine ter 800 aulas à sua disposição, mas ninguém pra tirar suas dúvidas?</strong><br><br>Você trava numa questão e manda no fórum da plataforma que você assina. A resposta vem em três dias. Se vier.</p>
       <p class="problema-punch">A dúvida que te parou hoje precisava de resposta hoje.</p>
       <p class="problema-comp">E a <strong>IDECAN cobra diferente</strong>: pegadinha específica, lógica fora do livro, pressão de tempo. Sozinho, você cai justo nas armadilhas que decidem a prova.</p>
     </div>
@@ -1492,7 +1534,25 @@ src="https://www.facebook.com/tr?id=1370963298384286&ev=PageView&noscript=1"
         <h2 class="secao-titulo" style="margin-bottom:14px;">
           A turma que vai <em>gabaritar</em> Matemática e RLM
         </h2>
-        <p class="incluso-intro">Aulas ao vivo no computador, no tablet ou no celular. Tudo pra dominar Matemática e RLM, num lugar só.</p>
+        <p class="incluso-intro">Aulas ao vivo pra você assistir de onde estiver: do computador, do celular ou do tablet. Matemática e RLM, do jeito certo, num lugar só.</p>
+      </div>
+    </div>
+
+    <!-- tira de mensagens reais da turma atual -->
+    <div class="turma-prova reveal">
+      <div class="turma-prova-head">
+        <span class="turma-prova-tag"><span class="turma-pulse"></span>O que alguns dos alunos da turma estão dizendo</span>
+      </div>
+      <div class="tdep-wrap" id="tdepWrap">
+        <div class="tdep-track" id="tdepTrack">
+          <figure class="tdep-slide"><img src="fotos/depoimentos/dep-turma-01.jpg" alt="Mensagem de aluno da Turma PMES no WhatsApp" loading="lazy"></figure>
+          <figure class="tdep-slide"><img src="fotos/depoimentos/dep-turma-02.jpg" alt="Mensagem de aluno da Turma PMES no WhatsApp" loading="lazy"></figure>
+          <figure class="tdep-slide"><img src="fotos/depoimentos/dep-turma-03.jpg" alt="Mensagem de aluno da Turma PMES no WhatsApp" loading="lazy"></figure>
+          <figure class="tdep-slide"><img src="fotos/depoimentos/dep-turma-04.jpg" alt="Mensagem de aluno da Turma PMES no WhatsApp" loading="lazy"></figure>
+          <figure class="tdep-slide"><img src="fotos/depoimentos/dep-turma-05.jpg" alt="Mensagem de aluno da Turma PMES no WhatsApp" loading="lazy"></figure>
+          <figure class="tdep-slide"><img src="fotos/depoimentos/dep-turma-06.jpg" alt="Mensagem de aluno da Turma PMES no WhatsApp" loading="lazy"></figure>
+          <figure class="tdep-slide"><img src="fotos/depoimentos/dep-turma-07.jpg" alt="Mensagem de aluno da Turma PMES no WhatsApp" loading="lazy"></figure>
+        </div>
       </div>
     </div>
 
@@ -2205,7 +2265,7 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a){
 /* ─── REVELAÇÃO SUAVE DOS BLOCOS NO SCROLL ── */
 (function () {
   if (!('IntersectionObserver' in window)) return;
-  var sel = '.numeros-prova, .problema-foco, .incluso-topo, .incluso-item, .bonus-box, .contraste-titulo, .contraste-lista, .contraste-punch, .meta-diagrama, .destaque-box, .foto-secao, .oferta-card, .selos-row, .bio-grid, .objec-item, .secao-titulo, .secao-subtitulo';
+  var sel = '.numeros-prova, .problema-foco, .incluso-topo, .turma-prova, .incluso-item, .bonus-box, .contraste-titulo, .contraste-lista, .contraste-punch, .meta-diagrama, .destaque-box, .foto-secao, .oferta-card, .selos-row, .bio-grid, .objec-item, .secao-titulo, .secao-subtitulo';
   var els = document.querySelectorAll(sel);
   if (!els.length) return;
   document.body.classList.add('reveal-on');
@@ -2376,6 +2436,49 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a){
     updateDots();
     schedulResume();
   });
+})();
+</script>
+
+<script>
+/* ─── TIRA DE MENSAGENS DA TURMA ATUAL — marquee contínuo ── */
+(function () {
+  var wrap  = document.getElementById('tdepWrap');
+  var track = document.getElementById('tdepTrack');
+  if (!wrap || !track) return;
+
+  /* duplica os slides p/ loop sem emenda */
+  var originais = Array.prototype.slice.call(track.children);
+  originais.forEach(function (n) { track.appendChild(n.cloneNode(true)); });
+
+  var SPEED  = 38;     // px por segundo
+  var pos    = 0, lastTs = null, half = 0, paused = false, rafId, resumeT;
+  var reduz  = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function medir() { half = track.scrollWidth / 2; }
+  medir();
+  window.addEventListener('load', medir);
+  window.addEventListener('resize', medir);
+
+  function tick(ts) {
+    if (!half) medir();
+    if (!paused && !reduz && half) {
+      if (lastTs !== null) {
+        pos += SPEED * (ts - lastTs) / 1000;
+        if (pos >= half) pos -= half;
+        track.style.transform = 'translateX(' + (-pos) + 'px)';
+      }
+      lastTs = ts;
+    } else {
+      lastTs = null;
+    }
+    rafId = requestAnimationFrame(tick);
+  }
+  rafId = requestAnimationFrame(tick);
+
+  wrap.addEventListener('mouseenter', function () { paused = true; });
+  wrap.addEventListener('mouseleave', function () { paused = false; });
+  wrap.addEventListener('touchstart', function () { paused = true; clearTimeout(resumeT); }, { passive: true });
+  wrap.addEventListener('touchend',   function () { clearTimeout(resumeT); resumeT = setTimeout(function () { paused = false; }, 2500); }, { passive: true });
 })();
 </script>
 
